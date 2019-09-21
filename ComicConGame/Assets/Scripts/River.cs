@@ -26,7 +26,6 @@ public class River : MonoBehaviour
     {
         if (_currentDistance - _boat.Z < 0)
         {
-            
             _currentDistance += triggerDistance;
             GenerateNextLayer();
         }
@@ -35,8 +34,8 @@ public class River : MonoBehaviour
 
     private void GenerateNextLayer()
     {
-        var a = Instantiate(wallPrefabs, new Vector3(-5, 0, 0), Quaternion.identity);
-        var b = Instantiate(wallPrefabs, new Vector3(5, 0, 0), Quaternion.identity);
+        var a = Instantiate(wallPrefabs, new Vector3(-15, 0, 0), Quaternion.identity);
+        var b = Instantiate(wallPrefabs, new Vector3(15, 0, 0), Quaternion.identity);
         a.LayerIndex = nextLayer;
         b.LayerIndex = nextLayer;
         nextLayer++;

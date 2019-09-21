@@ -152,10 +152,10 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: bbf1e57a5d12eb64d882cec7056343b7, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  maxForward: 1
+  maxForward: 10
   maxLateral: 5
-  oreForce: {x: 2, y: 2}
-  drag: {x: 0.05, y: 0.1}
+  oreForce: {x: 2, y: 4}
+  drag: {x: 0.05, y: 0.01}
   water: {fileID: 2100000, guid: 7ed4dae79bbcffa46abded6aa38b18e8, type: 2}
   shaderScale: 0.01
 --- !u!64 &61088998

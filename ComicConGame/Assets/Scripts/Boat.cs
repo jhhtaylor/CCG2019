@@ -11,11 +11,13 @@ public class Boat : MonoBehaviour
     [SerializeField] private Vector2 oreForce;
     [SerializeField] private Vector2 drag;
     [SerializeField] private Material water;
-    private float _currentForwardSpeed ;
+    private float _currentForwardSpeed;
     private float _currentLateralSpeed;
     private float _posZ;
     [SerializeField] private float shaderScale = 0.5f;
 
+    public float X => transform.position.x;
+    public float Y => transform.position.y;
     public float Z => _posZ;
 
     private void Update()
