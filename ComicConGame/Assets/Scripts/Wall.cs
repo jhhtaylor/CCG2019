@@ -9,20 +9,21 @@ public class Wall : MonoBehaviour
 
     private River _river;
     private Boat _boat;
+    private float startZ;
     public float deleteDist = 2f;
 
     private void Start()
     {
         _river = FindObjectOfType<River>();
         _boat = FindObjectOfType<Boat>();
-        transform.position += _river.triggerDistance * LayerIndex * Vector3.forward;
+        startZ = _river.triggerDistance * LayerIndex;
     }
 
     // Update is called once per frame
     void Update()
     {
         var pos = transform.position;
-        var z = pos.z - _boat.Z;
+        var z = startZ - _boat.Z;
         if (z > -deleteDist)
             transform.position = new Vector3(pos.x, pos.y, z);
         else
