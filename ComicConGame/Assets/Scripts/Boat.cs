@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
@@ -82,6 +83,10 @@ public class Boat : MonoBehaviour
             fallY += 6 * Time.deltaTime;
             man.transform.Rotate(0,0,360*Time.deltaTime);
             man.transform.position = new Vector3(transform.position.x, transform.position.y-fallY, transform.position.z);
+            if (Input.GetKeyDown(KeyCode.R))
+            {
+                SceneManager.LoadScene(0);
+            }
         }
     }
 

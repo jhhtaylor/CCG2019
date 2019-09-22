@@ -406,7 +406,6 @@ GameObject:
   - component: {fileID: 368590403}
   - component: {fileID: 368590402}
   - component: {fileID: 368590405}
-  - component: {fileID: 368590406}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -492,24 +491,42 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   Game: Game
-  time: 0.5
+  time: 0.65
   background1: {fileID: 2000998443}
   background2: {fileID: 1420159748}
---- !u!82 &368590406
+--- !u!1 &900104029
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 900104032}
+  - component: {fileID: 900104031}
+  - component: {fileID: 900104030}
+  m_Layer: 0
+  m_Name: Music
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!82 &900104030
 AudioSource:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 368590401}
+  m_GameObject: {fileID: 900104029}
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: d4e11e31b7861e6419a4101cbf7ddc48, type: 3}
+  m_audioClip: {fileID: 8300000, guid: 01cc0f2ef90cd2348953387384fbd7d2, type: 3}
   m_PlayOnAwake: 1
   m_Volume: 1
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -591,6 +608,32 @@ AudioSource:
     m_PreInfinity: 2
     m_PostInfinity: 2
     m_RotationOrder: 4
+--- !u!114 &900104031
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900104029}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8bff28ae37cdc494db5c2c649afaa64a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!4 &900104032
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 900104029}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 22.659128, y: -2.1139243, z: 64.34747}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+  m_RootOrder: 7
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1001 &1004041473
 PrefabInstance:
   m_ObjectHideFlags: 0
