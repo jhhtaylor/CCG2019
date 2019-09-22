@@ -2,6 +2,7 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
+using UnityEngine.UI;
 
 
 public class Boat : MonoBehaviour
@@ -11,24 +12,55 @@ public class Boat : MonoBehaviour
     [SerializeField] private Vector2 oreForce;
     [SerializeField] private Vector2 drag;
     [SerializeField] private Material water;
-    private float _currentForwardSpeed;
+    private float _currentForwardSpeed = 65f;
     private float _currentLateralSpeed;
     private float _posZ;
     [SerializeField] private float shaderScale = 0.5f;
-
+    [SerializeField] private GameObject man;
+    [SerializeField] private SpriteRenderer sr;
+    [SerializeField] private Image hundred;
+    [SerializeField] private Image ten;
+    [SerializeField] private Image unit;
+    [SerializeField] private Sprite[] digits;
     public float X => transform.position.x;
     public float Y => transform.position.y;
     public float Z => _posZ;
+
+    private Quaternion _initialRotation;
+
+    private void Start()
+    {
+        _initialRotation = man.transform.rotation;
+    }
 
     private void Update()
     {
         if (Input.GetButtonDown("RightOre"))
         {
-            Force(oreForce.x, 0, oreForce.y);
+            sr.flipX = false;
         }
-        else if (Input.GetButtonDown("LeftOre"))
+
+        if (Input.GetButtonDown("LeftOre"))
         {
-            Force(-oreForce.x, 0, oreForce.y);
+            sr.flipX = true;
+        }
+
+        if (Input.GetButton("RightOre"))
+        {
+            Force(oreForce.x);
+            man.transform.rotation = _initialRotation * Quaternion.Euler(0, 0, -30);
+            man.transform.position = new Vector3(transform.position.x, transform.position.y, man.transform.position.z);
+        }
+        else if (Input.GetButton("LeftOre"))
+        {
+            Force(-oreForce.x);
+            man.transform.rotation = _initialRotation * Quaternion.Euler(0, 0, 30);
+            man.transform.position =
+                new Vector3(transform.position.x - 1, transform.position.y, man.transform.position.z);
+        }
+        else
+        {
+            man.transform.rotation = _initialRotation;
         }
 
         Drag();
@@ -36,19 +68,21 @@ public class Boat : MonoBehaviour
         transform.position += _currentLateralSpeed * Time.deltaTime * Vector3.right;
         water.SetVector("_BoatPosition",
             new Vector4(0, _posZ * shaderScale));
+        hundred.sprite = digits[(int) ((_posZ / 10) % 1000 / 100)];
+        ten.sprite = digits[(int) ((_posZ / 10) % 100 / 10)];
+        unit.sprite = digits[(int) ((_posZ / 10) % 10)];
     }
+
 
     private void Drag()
     {
         _currentLateralSpeed *= 1 - drag.x;
-            //_currentForwardSpeed *= 1 - drag.y;
+        //_currentForwardSpeed *= 1 - drag.y;
     }
 
-    private void Force(float x, float y, float z)
+    private void Force(float x)
     {
-        _currentForwardSpeed += z;
-        _currentForwardSpeed = Mathf.Clamp(_currentForwardSpeed, 0, maxForward);
-        _currentLateralSpeed += x;
+        _currentLateralSpeed += x * Time.deltaTime;
         _currentLateralSpeed = Mathf.Clamp(_currentLateralSpeed, -maxLateral, maxLateral);
     }
 }

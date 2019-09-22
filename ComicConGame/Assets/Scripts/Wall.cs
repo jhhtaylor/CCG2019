@@ -57,6 +57,10 @@ public class Wall : MonoBehaviour
 
     public void Set(int layerIndex, float triggerDistance, int riverLength, Boat boat, float x)
     {
+        if (Random.Range(0, 1f) < 0.5f)
+        {
+            transform.localScale = Vector3.Scale(transform.localScale, new Vector3(-1,1,1));
+        }
         _boat = boat;
         startZ = triggerDistance * layerIndex;
         var z = startZ - _boat.Z;
