@@ -17,6 +17,6 @@ public class FollowBoat : MonoBehaviour
     void Update()
     {
         var position = _boat.transform.position;
-        transform.position = Vector3.Lerp(transform.position, new Vector3(position.x, position.y, transform.position.z), speed);
+        transform.position = Vector3.Lerp(transform.position, new Vector3(position.x, transform.position.y, transform.position.z), speed);
     }
 }

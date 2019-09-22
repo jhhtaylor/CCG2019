@@ -41,7 +41,7 @@ public class Boat : MonoBehaviour
     private void Drag()
     {
         _currentLateralSpeed *= 1 - drag.x;
-        _currentForwardSpeed *= 1 - drag.y;
+            //_currentForwardSpeed *= 1 - drag.y;
     }
 
     private void Force(float x, float y, float z)
