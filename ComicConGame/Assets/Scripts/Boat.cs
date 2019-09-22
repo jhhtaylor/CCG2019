@@ -27,57 +27,73 @@ public class Boat : MonoBehaviour
     public float Z => _posZ;
 
     private Quaternion _initialRotation;
+    private bool _crash;
 
     private void Start()
     {
         _initialRotation = man.transform.rotation;
     }
 
+    private float fallY = 0;
     private void Update()
     {
-        if (Input.GetButtonDown("RightOre"))
+        if (!_crash)
         {
-            sr.flipX = false;
-        }
+            if (Input.GetButtonDown("RightOre"))
+            {
+                sr.flipX = false;
+            }
 
-        if (Input.GetButtonDown("LeftOre"))
-        {
-            sr.flipX = true;
-        }
+            if (Input.GetButtonDown("LeftOre"))
+            {
+                sr.flipX = true;
+            }
 
-        if (Input.GetButton("RightOre"))
-        {
-            Force(oreForce.x);
-            man.transform.rotation = _initialRotation * Quaternion.Euler(0, 0, -30);
-            man.transform.position = new Vector3(transform.position.x, transform.position.y, man.transform.position.z);
-        }
-        else if (Input.GetButton("LeftOre"))
-        {
-            Force(-oreForce.x);
-            man.transform.rotation = _initialRotation * Quaternion.Euler(0, 0, 30);
-            man.transform.position =
-                new Vector3(transform.position.x - 1, transform.position.y, man.transform.position.z);
+            if (Input.GetButton("RightOre"))
+            {
+                Force(oreForce.x);
+                man.transform.rotation = _initialRotation * Quaternion.Euler(0, 0, -30);
+                man.transform.position =
+                    new Vector3(transform.position.x, transform.position.y, man.transform.position.z);
+            }
+            else if (Input.GetButton("LeftOre"))
+            {
+                Force(-oreForce.x);
+                man.transform.rotation = _initialRotation * Quaternion.Euler(0, 0, 30);
+                man.transform.position =
+                    new Vector3(transform.position.x - 1, transform.position.y, man.transform.position.z);
+            }
+            else
+            {
+                man.transform.rotation = _initialRotation;
+            }
+
+            Drag();
+            _posZ += _currentForwardSpeed * Time.deltaTime;
+            transform.position += _currentLateralSpeed * Time.deltaTime * Vector3.right;
+            water.SetVector("_BoatPosition",
+                new Vector4(0, _posZ * shaderScale));
+            hundred.sprite = digits[(int) ((_posZ / 10) % 1000 / 100)];
+            ten.sprite = digits[(int) ((_posZ / 10) % 100 / 10)];
+            unit.sprite = digits[(int) ((_posZ / 10) % 10)];
         }
         else
         {
-            man.transform.rotation = _initialRotation;
+            fallY += 6 * Time.deltaTime;
+            man.transform.Rotate(0,0,360*Time.deltaTime);
+            man.transform.position = new Vector3(transform.position.x, transform.position.y-fallY, transform.position.z);
         }
-
-        Drag();
-        _posZ += _currentForwardSpeed * Time.deltaTime;
-        transform.position += _currentLateralSpeed * Time.deltaTime * Vector3.right;
-        water.SetVector("_BoatPosition",
-            new Vector4(0, _posZ * shaderScale));
-        hundred.sprite = digits[(int) ((_posZ / 10) % 1000 / 100)];
-        ten.sprite = digits[(int) ((_posZ / 10) % 100 / 10)];
-        unit.sprite = digits[(int) ((_posZ / 10) % 10)];
     }
-
 
     private void Drag()
     {
         _currentLateralSpeed *= 1 - drag.x;
-        //_currentForwardSpeed *= 1 - drag.y;
+    }
+
+    public void Crash()
+    {
+        _currentForwardSpeed = 0;
+        _crash = true;
     }
 
     private void Force(float x)

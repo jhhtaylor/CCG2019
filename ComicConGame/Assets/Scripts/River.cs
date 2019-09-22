@@ -4,7 +4,6 @@ using UnityEngine;
 using Random = UnityEngine.Random;
 
 
-
 public class River : MonoBehaviour
 {
     [SerializeField] private Wall[] wallPrefabs;
@@ -18,9 +17,8 @@ public class River : MonoBehaviour
 
     private void Start()
     {
-        
         _currentDistance = triggerDistance;
-        for (var i = 0; i < riverLength; i++)
+        for (var i = 0; i < riverLength+15; i++)
         {
             GenerateNextLayer();
         }
@@ -38,9 +36,13 @@ public class River : MonoBehaviour
 
     private void GenerateNextLayer()
     {
-        Wall a = Instantiate(wallPrefabs[Random.Range(0,wallPrefabs.Length)], Vector3.zero, Quaternion.identity).GetComponent<Wall>();
-        a.Set(_nextLayer, triggerDistance, riverLength, boat, x);
-        x += Random.Range(-variance, variance);
+        if (_nextLayer > 15)
+        {
+            Wall a = Instantiate(wallPrefabs[Random.Range(0, wallPrefabs.Length)], Vector3.zero, Quaternion.identity)
+                .GetComponent<Wall>();
+            a.Set(_nextLayer, triggerDistance, riverLength, boat, x);
+            x +=  Random.Range(-variance, variance);
+        }
         _nextLayer++;
     }
 }

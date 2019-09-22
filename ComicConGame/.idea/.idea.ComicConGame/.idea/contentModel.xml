@@ -10,7 +10,9 @@
         <e p="RaftAnimate.cs" t="Include" />
         <e p="Scripts" t="Include">
           <e p="Boat.cs" t="Include" />
+          <e p="DontDestroyMusic.cs" t="Include" />
           <e p="FollowBoat.cs" t="Include" />
+          <e p="Menu.cs" t="Include" />
           <e p="River.cs" t="Include" />
           <e p="Wall.cs" t="Include" />
         </e>

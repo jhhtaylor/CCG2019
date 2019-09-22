@@ -1,5 +1,7 @@
-﻿using System.Collections.Generic;
+﻿using System;
+using System.Collections.Generic;
 using UnityEngine;
+using Random = UnityEngine.Random;
 
 public class Rail
 {
@@ -54,7 +56,7 @@ public class Wall : MonoBehaviour
     private Rail _posRail;
     public float yMax = 11f;
     [SerializeField] private List<Vector2> posRail;
-
+    
     public void Set(int layerIndex, float triggerDistance, int riverLength, Boat boat, float x)
     {
         if (Random.Range(0, 1f) < 0.5f)
@@ -82,5 +84,14 @@ public class Wall : MonoBehaviour
         }
         else
             Destroy(gameObject);
+    }
+
+    private void OnCollisionEnter(Collision other)
+    {
+        if (other.gameObject.CompareTag("Player"))
+        {
+            Debug.Log("Awe");
+            other.gameObject.GetComponent<Boat>().Crash();
+        }
     }
 }
