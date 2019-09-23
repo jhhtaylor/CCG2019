@@ -9,6 +9,7 @@ public class River : MonoBehaviour
     [SerializeField] private Wall[] wallPrefabs;
     [SerializeField] private Boat boat;
     [SerializeField] private float variance = 2f;
+    public GameObject instructions;
     public int riverLength = 10;
     public float triggerDistance;
     private int _nextLayer = 1;

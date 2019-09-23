@@ -1,7 +1,16 @@
 fileFormatVersion: 2
 guid: 3b2176a9784271047b4f588d2f6d429a
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 1559890023621216222
+    second: Play_1_0
+  - first:
+      213: 4888121714757190696
+    second: Play_1_1
+  - first:
+      213: 374604064617515906
+    second: Play_1_4
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +49,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -50,7 +59,7 @@ TextureImporter:
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
   alphaIsTransparency: 1
-  spriteTessellationDetail: -1
+  spriteTessellationDetail: 0
   textureType: 8
   textureShape: 1
   singleChannelComponent: 0
@@ -115,11 +124,57 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
-    outline: []
+    sprites:
+    - serializedVersion: 2
+      name: Play_1_1
+      rect:
+        serializedVersion: 2
+        x: 1609
+        y: 686
+        width: 452
+        height: 186
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: ab0b48d0292b5594dbce66fa29c23b9a
+      internalID: 4888121714757190696
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    - serializedVersion: 2
+      name: Play_1_4
+      rect:
+        serializedVersion: 2
+        x: 1504
+        y: 785
+        width: 18
+        height: 7
+      alignment: 0
+      pivot: {x: 0.5, y: 0.5}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 0ae8e29714108b944b2188a372885eec
+      internalID: 374604064617515906
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
+    outline:
+    - - {x: -235, y: -366}
+      - {x: -235, y: -110}
+      - {x: 247, y: -110}
+      - {x: 247, y: -366}
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 243f4d439554b544dbc46929734b8495
     internalID: 0
     vertices: []
     indices: 

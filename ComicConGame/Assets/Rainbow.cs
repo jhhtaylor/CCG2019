@@ -11,6 +11,7 @@ public class Rainbow : MonoBehaviour
     private bool _rotateToTop;
     private bool _rotateToBottom;
     private bool _isUp;
+    public bool alwaysRotate;
 
     private void Start()
     {
@@ -41,7 +42,7 @@ public class Rainbow : MonoBehaviour
             }
         }
 
-        if (_rotateToTop || _rotateToBottom)
+        if (_rotateToTop || _rotateToBottom || alwaysRotate)
         {
             angle += speed * Time.deltaTime;
             transform.rotation *= Quaternion.Euler(0, 0, -speed * Time.deltaTime);

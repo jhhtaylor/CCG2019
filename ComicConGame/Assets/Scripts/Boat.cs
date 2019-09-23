@@ -30,12 +30,11 @@ public class Boat : MonoBehaviour
 
     private Quaternion _initialRotation;
     private bool _crash;
+    public static int highScore;
     private void Start()
     {
         _initialRotation = man.transform.rotation;
-        
     }
-
     private float fallY = 0;
     private int score;
 
@@ -43,18 +42,9 @@ public class Boat : MonoBehaviour
     {
         if (!_crash)
         {
-            if (Input.GetButtonDown("RightOre"))
-            {
-                sr.flipX = false;
-            }
-
-            if (Input.GetButtonDown("LeftOre"))
-            {
-                sr.flipX = true;
-            }
-
             if (Input.GetButton("RightOre"))
             {
+                sr.flipX = false;
                 Force(oreForce.x);
                 man.transform.rotation = _initialRotation * Quaternion.Euler(0, 0, -30);
                 man.transform.position =
@@ -62,6 +52,7 @@ public class Boat : MonoBehaviour
             }
             else if (Input.GetButton("LeftOre"))
             {
+                sr.flipX = true;
                 Force(-oreForce.x);
                 man.transform.rotation = _initialRotation * Quaternion.Euler(0, 0, 30);
                 man.transform.position =
