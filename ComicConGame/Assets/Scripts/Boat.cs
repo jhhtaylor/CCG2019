@@ -6,6 +6,7 @@ using UnityEngine.SceneManagement;
 using UnityEngine.UI;
 
 
+
 public class Boat : MonoBehaviour
 {
     [SerializeField] private float maxForward = 4;
@@ -39,6 +40,10 @@ public class Boat : MonoBehaviour
     private float fallY = 0;
     private int score;
 
+    public AudioClip[] soundToPlayCrash;
+    public AudioClip[] soundToPlaySteer;
+    public AudioSource audio;
+
     private void Update()
     {
         if (!_crash)
@@ -50,6 +55,7 @@ public class Boat : MonoBehaviour
                 man.transform.rotation = _initialRotation * Quaternion.Euler(0, 0, -30);
                 man.transform.position =
                     new Vector3(transform.position.x, transform.position.y, man.transform.position.z);
+                RandomAudioSteer();
             }
             else if (Input.GetButton("LeftOre"))
             {
@@ -58,6 +64,7 @@ public class Boat : MonoBehaviour
                 man.transform.rotation = _initialRotation * Quaternion.Euler(0, 0, 30);
                 man.transform.position =
                     new Vector3(transform.position.x - 1, transform.position.y, man.transform.position.z);
+                RandomAudioSteer();
             }
             else
             {
@@ -69,9 +76,9 @@ public class Boat : MonoBehaviour
             transform.position += _currentLateralSpeed * Time.deltaTime * Vector3.right;
             water.SetVector("_BoatPosition",
                 new Vector4(0, _posZ * shaderScale));
-            var h = (int) ((_posZ / 10) % 1000 / 100);
-            var t = (int) ((_posZ / 10) % 100 / 10);
-            var u = (int) ((_posZ / 10) % 10);
+            var h = (int)((_posZ / 10) % 1000 / 100);
+            var t = (int)((_posZ / 10) % 100 / 10);
+            var u = (int)((_posZ / 10) % 10);
             hundred.sprite = digits[h];
             ten.sprite = digits[t];
             unit.sprite = digits[u];
@@ -85,7 +92,7 @@ public class Boat : MonoBehaviour
             {
                 rainBow.RotateToBottom();
             }
-            
+
         }
         else
         {
@@ -105,6 +112,7 @@ public class Boat : MonoBehaviour
     {
         _currentForwardSpeed = 0;
         _crash = true;
+        RandomAudioCrash();
     }
 
     private void Force(float x)
@@ -126,5 +134,26 @@ public class Boat : MonoBehaviour
             PlayerPrefs.SetInt("highscore", highScore);
         }
         return val;
+    }
+
+    void RandomAudioCrash()
+    {
+        if (audio.isPlaying)
+        {
+            return;
+        }
+        audio.clip = soundToPlayCrash[UnityEngine.Random.Range(0, soundToPlayCrash.Length)];
+        audio.Play();
+
+    }
+    void RandomAudioSteer()
+    {
+        if (audio.isPlaying)
+        {
+            return;
+        }
+        audio.clip = soundToPlaySteer[UnityEngine.Random.Range(0, soundToPlaySteer.Length)];
+        audio.Play();
+
     }
 }
