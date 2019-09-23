@@ -1,7 +1,10 @@
 fileFormatVersion: 2
-guid: fe13941092507114bbd4485458db6f74
+guid: 1d1bdec8509aea14c8700d48c4124930
 TextureImporter:
-  internalIDToNameTable: []
+  internalIDToNameTable:
+  - first:
+      213: 3333734528007685638
+    second: flowers_2_0
   externalObjects: {}
   serializedVersion: 10
   mipmaps:
@@ -40,7 +43,7 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 1
+  spriteMode: 2
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
@@ -115,11 +118,32 @@ TextureImporter:
     androidETC2FallbackOverride: 0
   spriteSheet:
     serializedVersion: 2
-    sprites: []
+    sprites:
+    - serializedVersion: 2
+      name: flowers_2_0
+      rect:
+        serializedVersion: 2
+        x: 1561
+        y: 736
+        width: 697
+        height: 94
+      alignment: 0
+      pivot: {x: 0, y: 0}
+      border: {x: 0, y: 0, z: 0, w: 0}
+      outline: []
+      physicsShape: []
+      tessellationDetail: 0
+      bones: []
+      spriteID: 6d6e9e0adeb31dc49817822a4cf49da8
+      internalID: 3333734528007685638
+      vertices: []
+      indices: 
+      edges: []
+      weights: []
     outline: []
     physicsShape: []
     bones: []
-    spriteID: 
+    spriteID: 7d267b0a514b3a54cbeaffa7ff2aa71b
     internalID: 0
     vertices: []
     indices: 

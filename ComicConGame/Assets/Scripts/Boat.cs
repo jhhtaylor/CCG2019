@@ -23,19 +23,22 @@ public class Boat : MonoBehaviour
     [SerializeField] private Image ten;
     [SerializeField] private Image unit;
     [SerializeField] private Sprite[] digits;
+    [SerializeField] private Rainbow rainBow;
     public float X => transform.position.x;
     public float Y => transform.position.y;
     public float Z => _posZ;
 
     private Quaternion _initialRotation;
     private bool _crash;
-
     private void Start()
     {
         _initialRotation = man.transform.rotation;
+        
     }
 
     private float fallY = 0;
+    private int score;
+
     private void Update()
     {
         if (!_crash)
@@ -74,15 +77,30 @@ public class Boat : MonoBehaviour
             transform.position += _currentLateralSpeed * Time.deltaTime * Vector3.right;
             water.SetVector("_BoatPosition",
                 new Vector4(0, _posZ * shaderScale));
-            hundred.sprite = digits[(int) ((_posZ / 10) % 1000 / 100)];
-            ten.sprite = digits[(int) ((_posZ / 10) % 100 / 10)];
-            unit.sprite = digits[(int) ((_posZ / 10) % 10)];
+            var h = (int) ((_posZ / 10) % 1000 / 100);
+            var t = (int) ((_posZ / 10) % 100 / 10);
+            var u = (int) ((_posZ / 10) % 10);
+            hundred.sprite = digits[h];
+            ten.sprite = digits[t];
+            unit.sprite = digits[u];
+            score = 100 * h + 10 * t + u;
+            if (score % 100 == 0 && score > 0)
+            {
+                rainBow.RotateToTop();
+            }
+
+            if ((score % 100 == 20 && score > 20) && rainBow.IsUp())
+            {
+                rainBow.RotateToBottom();
+            }
+            
         }
         else
         {
             fallY += 6 * Time.deltaTime;
-            man.transform.Rotate(0,0,360*Time.deltaTime);
-            man.transform.position = new Vector3(transform.position.x, transform.position.y-fallY, transform.position.z);
+            man.transform.Rotate(0, 0, 360 * Time.deltaTime);
+            man.transform.position =
+                new Vector3(transform.position.x, transform.position.y - fallY, transform.position.z);
             if (Input.GetKeyDown(KeyCode.R))
             {
                 SceneManager.LoadScene(0);
