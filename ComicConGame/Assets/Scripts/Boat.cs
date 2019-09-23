@@ -34,6 +34,7 @@ public class Boat : MonoBehaviour
     private void Start()
     {
         _initialRotation = man.transform.rotation;
+        highScore = PlayerPrefs.GetInt("highscore");
     }
     private float fallY = 0;
     private int score;
@@ -92,10 +93,6 @@ public class Boat : MonoBehaviour
             man.transform.Rotate(0, 0, 360 * Time.deltaTime);
             man.transform.position =
                 new Vector3(transform.position.x, transform.position.y - fallY, transform.position.z);
-            if (Input.GetKeyDown(KeyCode.R))
-            {
-                SceneManager.LoadScene(0);
-            }
         }
     }
 
@@ -119,5 +116,15 @@ public class Boat : MonoBehaviour
     public bool getCrash()
     {
         return _crash;
+    }
+
+    public bool BeatHighScore()
+    {
+        var val = score > highScore;
+        if (val)
+        {
+            PlayerPrefs.SetInt("highscore", highScore);
+        }
+        return val;
     }
 }
