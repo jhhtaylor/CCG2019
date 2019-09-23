@@ -115,4 +115,9 @@ public class Boat : MonoBehaviour
         _currentLateralSpeed += x * Time.deltaTime;
         _currentLateralSpeed = Mathf.Clamp(_currentLateralSpeed, -maxLateral, maxLateral);
     }
+
+    public bool getCrash()
+    {
+        return _crash;
+    }
 }
